@@ -1,0 +1,56 @@
+﻿@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Clothes";
+}
+
+
+<div class="container">
+
+    <div class="row">
+        @*//<h2>@ViewBag["Message"]</h2>*@
+        <h2> Blogs </h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Rental Time</th>
+                    <th scope="col">Rental Price</th>
+                    <th scope="col">Status</th>
+                </tr>
+            </thead>
+            <tbody id="bodyContent">
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+    const main = async () => {
+        var url = '/api/Clothes';
+        console.log(url);
+        var reponse = await fetch(url);
+        var data = await reponse.json();
+        renderSlide(data);
+    }
+    const renderSlide = (data) => {
+        var domSlide = document.querySelector("#bodyContent")
+        var html = '';
+        data.forEach((element, index) => {
+            html += `
+                    <tr>
+                      <th scope="row">${element.id}</th>
+                      <td>${element.name}</td>
+                      <td>${element.description}</td>
+                      <td>${element.rentalTime}</td>
+                      <td>${element.rentalPrice}</td>
+                      <td>${element.status==0?"Available":"Rental"}</td>
+                    </tr>
+                    `;
+        });
+
+        console.log(domSlide);
+        domSlide.innerHTML = html;
+    }
+    main()
+</script>

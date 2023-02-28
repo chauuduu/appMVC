@@ -1,0 +1,51 @@
+﻿@{
+    Layout = "/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "TypeClothes";
+}
+
+
+<div class="container">
+
+    <div class="row">
+        @*//<h2>@ViewBag["Message"]</h2>*@
+        <h2> Blogs </h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Limit</th>
+                </tr>
+            </thead>
+            <tbody id="bodyContent">
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+    const main = async () => {
+        var url = '/api/TypeClothes';
+        console.log(url);
+        var reponse = await fetch(url);
+        var data = await reponse.json();
+        renderSlide(data);
+    }
+    const renderSlide = (data) => {
+        var domSlide = document.querySelector("#bodyContent")
+        var html = '';
+        data.forEach((element, index) => {
+            html += `
+                <tr>
+                  <th scope="row">${element.id}</th>
+                  <td>${element.name}</td>
+                  <td>${element.limit}</td>
+
+                </tr>
+                `;
+        });
+
+        console.log(domSlide);
+        domSlide.innerHTML = html;
+    }
+    main()
+</script>
