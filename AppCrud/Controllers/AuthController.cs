@@ -67,9 +67,9 @@ namespace AppCrud.Controllers
             var user = new AppUser()
             {
                 UserName = username,
-                FullName = fullname,
                 EmailConfirmed = true
             };
+            user.SetName(fullname);
             var userCurrent =  await _userManager.FindByNameAsync(username);
             if (userCurrent != null)
             {

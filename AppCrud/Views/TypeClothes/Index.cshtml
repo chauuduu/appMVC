@@ -8,44 +8,57 @@
 
     <div class="row">
         @*//<h2>@ViewBag["Message"]</h2>*@
-        <h2> Blogs </h2>
+        <h2> Type Clothes </h2>
+        <h4></h4>
+        <div class="container text-right">
+        <button type="button" class="btn btn-success btn-lg float-end" data-toggle="modal" data-target="#myModal">
+                        Add
+        </button>
+        </div>
         <table class="table">
             <thead>
                 <tr>
                     <th scope="col">Id</th>
                     <th scope="col">Name</th>
                     <th scope="col">Limit</th>
+                    <th colspan="2">Action</th>
                 </tr>
             </thead>
             <tbody id="bodyContent">
             </tbody>
+            <div id="renderUpdate">
+            </div>
         </table>
+        
+        <div class="modal" id="myModal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h4 class="modal-title">Add TypeClothes</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <div class="mb-3 mt-3">
+                                <label for="txtname" class="form-label">Name : </label>
+                                <input type="text" class="form-control" id="txtname" placeholder="Enter name" name="txtname" required>
+                                <label for="txtlimit" class="form-label">Limit : </label>
+                                <input type="number" class="form-control" id="txtlimit" placeholder="Enter limit" name="txtlimit" required>
+                            </div>
+                            <button type="button" class="btn btn-primary" onclick="Add()">Submit</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
     </div>
 </div>
-<script>
-    const main = async () => {
-        var url = '/api/TypeClothes';
-        console.log(url);
-        var reponse = await fetch(url);
-        var data = await reponse.json();
-        renderSlide(data);
-    }
-    const renderSlide = (data) => {
-        var domSlide = document.querySelector("#bodyContent")
-        var html = '';
-        data.forEach((element, index) => {
-            html += `
-                <tr>
-                  <th scope="row">${element.id}</th>
-                  <td>${element.name}</td>
-                  <td>${element.limit}</td>
 
-                </tr>
-                `;
-        });
-
-        console.log(domSlide);
-        domSlide.innerHTML = html;
-    }
-    main()
-</script>
+<script src="~/js/site.js" asp-append-version="true"></script>

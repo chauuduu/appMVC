@@ -26,10 +26,10 @@ namespace AppCrud.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Required]
         public int Id { get; private set; }
-        [Required]
+        [Required(ErrorMessage = "Name is required")]
         [MaxLength(50)]
         public string Name { get; private set; } = "Unknown Clothes";
-        [Required]
+        [Required(ErrorMessage = "Description is required")]
         [MaxLength(50)]
         public string Description { get; private set; } = "None";
         public Size Size { get; private set; }

@@ -44,7 +44,7 @@ namespace AppCrud.ApiController
         {
             return Ok(ClothesService.Update(Id, ClothesEx));
         }
-        [HttpDelete("Id")]
+        [HttpDelete]
         public IActionResult Delete(int Id)
         {
             return Ok(ClothesService.Delete(Id));

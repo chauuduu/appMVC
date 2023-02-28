@@ -12,8 +12,8 @@ namespace AppCrud.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Required]
         public int Id { get; private set; }
-        [Required]
         [MaxLength(50)]
+        [Required(ErrorMessage = "Name is required")]
         public string Name { get; private set; } = "Unknown type";
         public int Limit { get; private set; }
 

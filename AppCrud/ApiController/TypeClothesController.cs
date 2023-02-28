@@ -21,10 +21,10 @@ namespace AppCrud.ApiController
         {
             return Ok(TypeClothesService.GetList());
         }
-        [HttpGet("Id")]
-        public IActionResult GetById(int Id)
+        [HttpGet("id")]
+        public IActionResult GetById(int id)
         {
-            return Ok(TypeClothesService.GetById(Id));
+            return Ok(TypeClothesService.GetById(id));
         }
         [HttpPost]
         public async Task<IActionResult> Insert(TypeClothes TypeClothesEx)
@@ -36,10 +36,10 @@ namespace AppCrud.ApiController
         {
             return Ok(TypeClothesService.Update(Id, TypeClothesEx));
         }
-        [HttpDelete("ID")]
-        public IActionResult Delete(int ID)
+        [HttpDelete]
+        public IActionResult Delete(int id)
         {
-            return Ok(TypeClothesService.Delete(ID));
+            return Ok(TypeClothesService.Delete(id));
         }
     }
 }
